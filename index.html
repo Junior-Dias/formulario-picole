@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Clientes - Fábrica de Picolés</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd; /* Fundo azul claro */
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+    }
+    h1 {
+      color: #0073e6; /* Azul */
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #333;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input[type="file"] {
+      border: none;
+    }
+    button {
+      background-color: #ff69b4; /* Rosa */
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff4d88;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+        <form id="cadastroForm" onsubmit="enviarWhatsApp(event)">
+     
+        <div class="form-container">
+            <img src="imagem/alecrim_logo.JPG" style="width: 20%; border-radius: 10px; margin-bottom: 20px;"><h2>Pedidos Alecriim Gelateria</h2>
+        <form id="cadastroForm" onsubmit="enviarWhatsApp(event)">
+              <!-- Campos do formulário -->
+            </form>
+        </div>
+
+      <label for="nome">Nome completo:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="cpf">CPF ou CNPJ:</label>
+      <input type="text" id="cpf" name="cpf" required>
+
+      <label for="telefone">Telefone/WhatsApp:</label>
+      <input type="tel" id="telefone" name="telefone" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco" required>
+
+      <label for="tipoCliente">Tipo de Cliente:</label>
+      <select id="tipoCliente" name="tipoCliente" required>
+        <option value="Revendedor">Revendedor</option>
+        <option value="Consumidor Final">Consumidor Final</option>
+      </select>
+
+      <label for="quantidade">Quantidade média de compra mensal:</label>
+      <input type="number" id="quantidade" name="quantidade" min="1" required>
+
+      <label for="sabores">Sabores de maior interesse:</label>
+      <textarea id="sabores" name="sabores" rows="3"></textarea>
+
+      <label for="observacoes">Observações:</label>
+      <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+
+      <button type="submit">Enviar Cadastro</button>
+    </form>
+  </div>
+
+  <script>
+    function enviarWhatsApp(event) {
+      event.preventDefault();
+
+      // Coleta os dados do formulário
+      const nome = document.getElementById("nome").value;
+      const cpf = document.getElementById("cpf").value;
+      const telefone = document.getElementById("telefone").value;
+      const email = document.getElementById("email").value;
+      const endereco = document.getElementById("endereco").value;
+      const tipoCliente = document.getElementById("tipoCliente").value;
+      const quantidade = document.getElementById("quantidade").value;
+      const sabores = document.getElementById("sabores").value;
+      const observacoes = document.getElementById("observacoes").value;
+
+      // Número de WhatsApp da empresa
+      const numeroWhatsApp = "5575981353989";
+
+      // Monta a mensagem
+      const mensagem = `
+      *Cadastro de Cliente*%0A
+      Nome: ${nome}%0A
+      CPF/CNPJ: ${cpf}%0A
+      Telefone: ${telefone}%0A
+      E-mail: ${email}%0A
+      Endereço: ${endereco}%0A
+      Tipo de Cliente: ${tipoCliente}%0A
+      Quantidade de Compra: ${quantidade}%0A
+      Sabores Interessados: ${sabores}%0A
+      Observações: ${observacoes}
+      `;
+
+      // Gera o link para o WhatsApp
+      const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+      // Redireciona para o WhatsApp
+      window.open(linkWhatsApp, "_blank");
+    }
+  </script>
+</body>
+</html>
